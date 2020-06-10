@@ -18,8 +18,11 @@ class User
 
     public function register(array $data)
     {
-        $conn = Db::getInstance()->getConnection();
-        var_dump($conn);
+
     }
 
+    public function login(array $data)
+    {
+
+    }
 }

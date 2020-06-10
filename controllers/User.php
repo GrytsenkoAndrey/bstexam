@@ -8,13 +8,19 @@
  */
 class User extends Controller
 {
+    # model
+    private $m;
+
+    /**
+     * save model
+     */
     public function __construct()
     {
-
+         #$this->m = $this->model('User');
     }
 
     /**
-     *
+     * login page
      */
     public function login()
     {
@@ -23,4 +29,5 @@ class User extends Controller
         ];
         $this->view('login', $data);
     }
+
 }
