@@ -88,7 +88,7 @@ class UserModel
      */
     public function getAllUsers(): array
     {
-        $sql = "SELECT id, login FROM users WHERE id <> :id";
+        $sql = "SELECT id, login FROM users WHERE id <> :id ORDER BY id ASC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':id' => $_SESSION['user_id']]);
 
@@ -122,20 +122,24 @@ class UserModel
         }
     }
 
+    /**
+     * @return array
+     */
     public function getFavoriteForUser()
     {
-        $sql = "SELECT f.contact_id, u.id, u.login "
+        $sql = "SELECT f.contact_id, u.login, u.id "
             ."FROM favorite AS f "
             ."LEFT JOIN users AS u ON f.contact_id = u.id "
-            ."WHERE u.login = :login";
+            ."WHERE f.user_login = :login "
+            ."ORDER BY f.contact_id ASC ";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':login' => $_SESSION['user_login']]);
 
-        $rows = $stmt->fetchAll();
+        if ($rows = $stmt->fetchAll()) {
+            return $rows;
+        } else {
+            return [];
+        }
 
-        echo "<pre>";
-        var_dump($rows);
-        echo "</pre>";
-        exit();
     }
 }

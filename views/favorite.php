@@ -10,6 +10,10 @@ require APPROOT . '/views/include/header.php';
             if (count($data['favorites']) > 0) {
                 ?>
                 <table class="table table-striped">
+                    <tr>
+                        <th>#ID</th>
+                        <th>LOGIN</th>
+                    </tr>
                 <?php
                 foreach ($data['favorites'] as $item) {
                     ?>
