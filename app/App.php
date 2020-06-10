@@ -11,9 +11,10 @@ class App
     private $controller = 'user';
     private $action = 'login';
     private $params = [];
-    static $instance;
+    private static $instance;
+
     /**
-     *
+     * call action from controller
      */
     private function __construct()
     {
