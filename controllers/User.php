@@ -24,10 +24,43 @@ class User extends Controller
      */
     public function login()
     {
-        $data = [
-            'title' => 'Авторизация',
-        ];
-        $this->view('login', $data);
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = [
+                'login' => strip_tags(trim($_POST['login'])),
+                'password' => strip_tags(trim($_POST['password'])),
+                'login_error' => '',
+                'password_error' => '',
+                'title' => 'Авторизация',
+            ];
+            if (empty($data['login'])) {
+                $data['login_error'] = 'Введите правильный адрес почты';
+            }
+            if (empty($data['password'])) {
+                $data['password_error'] = 'Введите пароль';
+            } elseif (strlen($data['password']) < 6) {
+                $data['password_error'] = 'Пароль должен быть больше 5 символов';
+            }
+
+            if (empty($data['login_error']) && empty($data['password_error'])) {
+                if ($this->m->login($data)) {
+                    header('Location: ' . URLROOT . 'user/contacts/');
+                } else {
+                    die('Ошибка авторизации');
+                }
+            } else {
+                $this->view('login', $data);
+            }
+        } else {
+            $data = [
+                'login' => '',
+                'password' => '',
+                'login_error' => '',
+                'password_error' => '',
+                'title' => 'Авторизация',
+            ];
+            $this->view('login', $data);
+        }
     }
 
     /**
