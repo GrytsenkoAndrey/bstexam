@@ -11,6 +11,8 @@ class User extends Controller
     # model
     private $m;
 
+    use CheckId;
+
     /**
      * save model
      */
@@ -126,7 +128,11 @@ class User extends Controller
 
     public function contacts()
     {
-
+        $this->issetId();
+        $data = [
+            'title' => 'Контакты',
+        ];
+        $this->view('contacts', $data);
     }
 
     public function favorite()
