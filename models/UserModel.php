@@ -98,4 +98,44 @@ class UserModel
             return [];
         }
     }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public function addToFavorite(int $id): bool
+    {
+        $sql = "INSERT INTO favorite (user_login, contact_id) VALUES (:login, :id)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            ':login' => $_SESSION['user_login'],
+            ':id' => (int)$id,
+        ]);
+
+        if ($this->connection->lastInsertId() > 0) {
+            header('Location: /user/favorite/');
+            exit();
+        } else {
+            $_SESSION['infoMsg'] = '<div class="alert alert-danger">Ошибка добавления пользователя</div>';
+            header('Location: /user/favorite/');
+            exit();
+        }
+    }
+
+    public function getFavoriteForUser()
+    {
+        $sql = "SELECT f.contact_id, u.id, u.login "
+            ."FROM favorite AS f "
+            ."LEFT JOIN users AS u ON f.contact_id = u.id "
+            ."WHERE u.login = :login";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([':login' => $_SESSION['user_login']]);
+
+        $rows = $stmt->fetchAll();
+
+        echo "<pre>";
+        var_dump($rows);
+        echo "</pre>";
+        exit();
+    }
 }

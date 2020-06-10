@@ -4,18 +4,18 @@ require APPROOT . '/views/include/header.php';
 
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <h2>Контакты</h2>
+            <h2>Избранные</h2>
 
             <?php
-            if (count($data['contacts']) > 0) {
+            if (count($data['favorites']) > 0) {
                 ?>
                 <table class="table table-striped">
                 <?php
-                foreach ($data['contacts'] as $item) {
+                foreach ($data['favorites'] as $item) {
                     ?>
                     <tr>
+                        <td><?= $item['id']; ?></td>
                         <td><?= $item['login']; ?></td>
-                        <td><a href="/user/add/id/<?= $item['id'] ?>/" title="В избранные">В избранные</a></td>
                     </tr>
                     <?php
                 }

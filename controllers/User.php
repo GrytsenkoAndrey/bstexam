@@ -134,6 +134,9 @@ class User extends Controller
         }
     }
 
+    /**
+     * контакты
+     */
     public function contacts()
     {
         $this->issetId();
@@ -144,9 +147,17 @@ class User extends Controller
         $this->view('contacts', $data);
     }
 
+    /**
+     * избранные
+     */
     public function favorite()
     {
-
+        $this->issetId();
+        $data = [
+            'title' => 'Избранные',
+            'favorites' => $this->m->getFavoriteForUser(),
+        ];
+        $this->view('favorite', $data);
     }
 
     /**
@@ -158,5 +169,11 @@ class User extends Controller
         session_destroy();
         setcookie(session_name(), '', time()-3600);
         header('Location: ' . URLROOT);
+    }
+
+    public function add($id)
+    {
+        $this->issetId();
+        $this->m->addToFavorite($id);
     }
 }
