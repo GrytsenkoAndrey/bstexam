@@ -56,6 +56,7 @@ class User extends Controller
                     die('Ошибка авторизации');
                 }
             } else {
+                $_SESSION['infoMsg'] = '';
                 $this->view('login', $data);
             }
         } else {
@@ -86,6 +87,7 @@ class User extends Controller
                 'confirm_error' => '',
                 'title' => 'Регистрация',
             ];
+
             if (empty($data['login'])) {
                 $data['login_error'] = 'Введите правильный адрес почты';
             } else {
@@ -115,6 +117,7 @@ class User extends Controller
                     die('wrong');
                 }
             } else {
+                $_SESSION['infoMsg'] = '';
                 $this->view('register', $data);
             }
         } else {

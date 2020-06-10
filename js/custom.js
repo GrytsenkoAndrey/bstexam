@@ -1,5 +1,3 @@
-'use strict';
-
 /**
 * сравниваем пароль при добавлении нового пользователя
 */
@@ -44,75 +42,4 @@ function checkClient()
           }
         }
     }) 
-}
-
-/**
-* фильтр для выборки клиента по части номера телефона
-*/
-function lookClient()
-{
-    var client_phone = document.getElementById('phone');
-   
-    $.ajax({
-        type: "POST",
-        async:true,
-        url: "/clients/look/",
-        data: {"phone": client_phone.value},
-        success: function(data) {
-            $('#nv').hide();
-            $('#result').html(data);
-            $('#result').show();
-        }
-    }) 
-}
-
-/**
-* записываем сумму в кассу при нажатии кнопки "оплачен"
-* на странице отображения заказов
-*/
-function updateTill(order_to, price, id)
-{
-  //console.log(order_to);
-  //console.log(price);
-  //console.log(id);
-
-  $('#bp'+id).hide();
-
-    $.ajax({
-        type: "POST",
-        async: true,
-        url: "/till/update/",
-        data: {"order_to": order_to, "price": price, "id": id},
-        success: function(data) {
-          console.log(data);
-        }
-    })
-}
-
-/**
-* изменяем статус заказа Выполнен/Не выполнен
-* на странице отображения заказов
-*/
-function updateOrder(id, status)
-{
-  //console.log(order_to);
-  //console.log(status);
-  //console.log(id);
-  if (status == 0) {
-    status = 1;
-  } else {
-    status = 0;
-  }
-  //console.log(status);
-  //console.log(id);
-
-    $.ajax({
-        type: "POST",
-        async: true,
-        url: "/orders/updstatus/",
-        data: {"id": id, "status": status},
-        success: function(data) {
-          console.log(data);
-        }
-    })
 }

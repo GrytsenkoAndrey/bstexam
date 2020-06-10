@@ -1,6 +1,26 @@
 <?php
 require APPROOT . '/views/include/header.php';
 ?>
+<script>
+    /**
+     * сравниваем пароль при добавлении нового пользователя
+     */
+    function comparePass()
+    {
+        var p1 = document.getElementById('password');
+        var p2 = document.getElementById('confirm');
+        var info = document.getElementById('info');
+
+        if ( (p1.value.length > 0) && (p2.value.length > 0) ) {
+            if (p1.value != p2.value) {
+                info.removeAttribute('hidden', false);
+            } else {
+                info.setAttribute('hidden', 'hidden');
+            };
+        };
+
+    }
+</script>
 
 <div class="row">
     <div class="col-md-6 mx-auto">

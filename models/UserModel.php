@@ -53,7 +53,7 @@ class UserModel
         $stmt->execute([':login' => $login]);
 
         $row = $stmt->fetch();
-        if (count($row) > 0) {
+        if ($row) {
             return true;
         } else {
             return false;
@@ -92,7 +92,7 @@ class UserModel
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':id' => $_SESSION['user_id']]);
 
-        if ($rows = fetchAll()) {
+        if ($rows = $stmt->fetchAll()) {
             return $rows;
         } else {
             return [];
