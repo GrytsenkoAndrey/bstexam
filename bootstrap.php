@@ -15,5 +15,9 @@ set_include_path(get_include_path()
 );
 
 spl_autoload_register(function ($class) {
-    require_once $class . '.php';
+    try {
+        require_once $class . '.php';
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 });

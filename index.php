@@ -9,3 +9,4 @@
 require_once 'bootstrap.php';
 
 $init = App::run();
+#var_dump($init);
