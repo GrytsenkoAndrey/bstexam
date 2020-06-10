@@ -7,7 +7,7 @@
  * Time: 18:10
  */
 
-class User
+class UserModel
 {
     private $connection;
 

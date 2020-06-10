@@ -5,3 +5,6 @@
     font-size: 20px;
     padding:20px;
 }
+.invalid-feedback {
+    color: red;
+}
