@@ -9,7 +9,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'myuser');
 define('DB_PASS', 'myuserpass');
-define('DB_NAME', 'uoop');
-define('APPROOT', dirname(dirname(__FILE__)));
+define('DB_NAME', 'bst_db');
+define('APPROOT', dirname(__FILE__));
 define('URLROOT', 'http://bstexam');
 define('SITENAME', 'BSTi Exam');
