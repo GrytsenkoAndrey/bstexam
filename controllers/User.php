@@ -6,10 +6,22 @@
  * Date: 10.06.2020
  * Time: 17:29
  */
-class User
+class User extends Controller
 {
+    protected $model;
+    protected $view;
+
+    public function __construct()
+    {
+
+    }
+
+    /**
+     *
+     */
     public function login()
     {
-        echo __METHOD__;
+        $conn = Db::getInstance()->getConnection();
+        var_dump($conn);
     }
 }
