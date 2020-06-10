@@ -20,7 +20,8 @@ class Controller
     public function view($view, array $data = [])
     {
         try {
-            return new view;
+            require_once 'views/' . $view . '.php';
+            return $view;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
