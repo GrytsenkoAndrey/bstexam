@@ -8,6 +8,12 @@
 
 require_once 'config/config.php';
 
+set_include_path(get_include_path()
+    .PATH_SEPARATOR . 'app'
+    .PATH_SEPARATOR . 'controllers'
+    .PATH_SEPARATOR . 'models'
+);
+
 spl_autoload_register(function ($class) {
-    require_once 'app/' . $class . '.php';
+    require_once $class . '.php';
 });

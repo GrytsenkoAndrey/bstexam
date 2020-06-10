@@ -8,4 +8,4 @@
 
 require_once 'bootstrap.php';
 
-$init = new App();
+$init = App::run();
