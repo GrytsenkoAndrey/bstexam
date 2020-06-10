@@ -1,12 +1,9 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title><?= $data['title'] ?></title>
-</head>
-<body>
+<?php
+require APPROOT . '/views/include/header.php';
+?>
 
 <h1>Login page</h1>
 
-</body>
-</html>
+<?php
+require APPROOT . '/views/include/footer.php';
+?>
