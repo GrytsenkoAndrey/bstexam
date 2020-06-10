@@ -7,6 +7,8 @@
  */
 session_start();
 
+require_once 'migration/migr.php';
+
 require_once 'bootstrap.php';
 
 $init = App::run();

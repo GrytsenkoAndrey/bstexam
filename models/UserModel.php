@@ -72,7 +72,7 @@ class UserModel
 
         $row = $stmt->fetch();
 
-        if (count($row) > 0) {
+        if ($row) {
             if (password_verify($data['password'], $row['password'])) {
                 $_SESSION['user_login'] = $row['login'];
                 $_SESSION['user_id'] = $row['id'];

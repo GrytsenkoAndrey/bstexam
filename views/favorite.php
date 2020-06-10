@@ -26,6 +26,10 @@ require APPROOT . '/views/include/header.php';
                 ?>
                 </table>
                 <?php
+            } else {
+                ?>
+                <p class="lead">У Вас нет избранных контактов</p>
+                <?php
             }
             ?>
         </div>

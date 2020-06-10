@@ -31,6 +31,12 @@ class User extends Controller
      */
     public function login()
     {
+        if (isset($_SESSION['user_id'])) {
+            $_SESSION['infoMsg'] = "<div class='alert alert-success'>Вы уже авторизованы</div>";
+            header("Location: /user/contacts/");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
@@ -53,7 +59,9 @@ class User extends Controller
                 if ($this->m->login($data)) {
                     header('Location: ' . URLROOT . 'user/contacts/');
                 } else {
-                    die('Ошибка авторизации');
+                    $_SESSION['infoMsg'] = "<div class='alert alert-success'>Ошибка авторизации</div>";
+                    header("Location: /user/login/");
+                    exit();
                 }
             } else {
                 $_SESSION['infoMsg'] = '';
@@ -76,6 +84,12 @@ class User extends Controller
      */
     public function register()
     {
+        if (isset($_SESSION['user_id'])) {
+            $_SESSION['infoMsg'] = "<div class='alert alert-success'>Вы уже авторизованы</div>";
+            header("Location: /user/contacts/");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [

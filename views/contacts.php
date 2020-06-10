@@ -7,6 +7,8 @@ require APPROOT . '/views/include/header.php';
             <h2>Контакты</h2>
 
             <?php
+            echo $_SESSION['infoMsg'] ?? '';
+
             if (count($data['contacts']) > 0) {
                 ?>
                 <table class="table table-striped">
@@ -23,6 +25,7 @@ require APPROOT . '/views/include/header.php';
                 </table>
                 <?php
             }
+            $_SESSION['infoMsg'] = '';
             ?>
         </div>
     </div>
