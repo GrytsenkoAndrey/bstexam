@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?= URLROOT ?>css/bootstrap-reboot.css">
     <link rel="stylesheet" href="<?= URLROOT ?>css/table.css">
     <link rel="stylesheet" href="<?= URLROOT ?>css/custom.css">
+    <script type="javascript" src="<?= URLROOT ?>js/jquery.js"></script>
+    <script type="javascript" src="<?= URLROOT ?>js/custom.js"></script>
 </head>
 <body>
 

@@ -42,6 +42,10 @@ class UserModel
         }
     }
 
+    /**
+     * @param string $login
+     * @return bool
+     */
     public function findUserByLogin(string $login): bool
     {
         $sql = "SELECT id FROM users WHERE login = :login";
@@ -56,6 +60,10 @@ class UserModel
         }
     }
 
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function login(array $data)
     {
         $sql = "SELECT id, login, password FROM users WHERE login = :login";
@@ -75,4 +83,19 @@ class UserModel
         }
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAllUsers(): array
+    {
+        $sql = "SELECT id, login FROM users WHERE id <> :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([':id' => $_SESSION['user_id']]);
+
+        if ($rows = fetchAll()) {
+            return $rows;
+        } else {
+            return [];
+        }
+    }
 }

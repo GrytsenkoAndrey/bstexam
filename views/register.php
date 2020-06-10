@@ -23,7 +23,7 @@ require APPROOT . '/views/include/header.php';
                     <?php
                     echo (!empty($data['password_error'])) ? ' is-invalid' : '';
                     ?>
-                    " value="<?= $data['password'] ?>">
+                    " value="<?= $data['password'] ?>" onChange="javascript:comparePass();">
                     <span class="invalid-feedback"><?= $data['password_error'] ?></span>
                 </div>
                 <div class="form-group">
@@ -32,8 +32,11 @@ require APPROOT . '/views/include/header.php';
                     <?php
                     echo (!empty($data['confirm_error'])) ? ' is-invalid' : '';
                     ?>
-                    " value="<?= $data['confirm'] ?>">
+                    " value="<?= $data['confirm'] ?>" onChange="javascript:comparePass();">
                     <span class="invalid-feedback"><?= $data['confirm_error'] ?></span>
+                </div>
+                <div id="info" class="alert alert-danger" hidden>
+                    <p>Пароли не равны</p>
                 </div>
                 <div class="row">
                     <div class="col">

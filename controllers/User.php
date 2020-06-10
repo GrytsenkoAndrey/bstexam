@@ -8,9 +8,14 @@
  */
 class User extends Controller
 {
-    # model
+    /**
+     * @var модель
+     */
     private $m;
 
+    /**
+     * проверяем авторизован ли пользователь
+     */
     use CheckId;
 
     /**
@@ -22,7 +27,7 @@ class User extends Controller
     }
 
     /**
-     * login page
+     * авторизация
      */
     public function login()
     {
@@ -66,7 +71,7 @@ class User extends Controller
     }
 
     /**
-     *
+     * регистрация
      */
     public function register()
     {
@@ -131,6 +136,7 @@ class User extends Controller
         $this->issetId();
         $data = [
             'title' => 'Контакты',
+            'contacts' => $this->m->getAllUsers(),
         ];
         $this->view('contacts', $data);
     }
@@ -140,6 +146,9 @@ class User extends Controller
 
     }
 
+    /**
+     * выход
+     */
     public function logout()
     {
         session_unset();
