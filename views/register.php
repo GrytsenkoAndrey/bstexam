@@ -7,7 +7,7 @@ require APPROOT . '/views/include/header.php';
         <div class="card card-body bg-light mt-5">
             <h2>Регистрация</h2>
 
-            <form action="<?= URLROOT ?>users/register" method="POST">
+            <form action="<?= URLROOT ?>user/register" method="POST">
                 <div class="form-group">
                     <label for="email">Email <sup>*</sup></label>
                     <input type="email" name="email" id="email" class="form-control form-control-lg
